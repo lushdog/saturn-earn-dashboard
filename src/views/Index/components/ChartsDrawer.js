@@ -87,7 +87,6 @@ const ConfigDrawer = ({ onCloseDrawer, pricePerDay, metrics, open }) => {
       onClose={onCloseDrawer}
       open={open}
       destroyOnClose={true}
-      maskClosable={false}
       forceRender={true}
       extra={
         <Button type="primary" onClick={onCloseDrawer}>

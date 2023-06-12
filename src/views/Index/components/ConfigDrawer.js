@@ -8,7 +8,6 @@ const ConfigDrawer = ({ onCloseDrawer, open }) => {
   const [serverList, setServerList] = useLocalStorage('serverList', [])
 
   const onFinish = ({ serverList }) => {
-    console.log(serverList)
     setServerList(serverList)
     message.success('Save Success')
     onCloseDrawer()
@@ -27,7 +26,6 @@ const ConfigDrawer = ({ onCloseDrawer, open }) => {
       onClose={onCloseDrawer}
       open={open}
       destroyOnClose={true}
-      maskClosable={false}
       forceRender={true}
     >
       <Form name="dynamic_form_nest_item" form={form} onFinish={onFinish} autoComplete="off">

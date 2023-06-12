@@ -25,12 +25,11 @@ const Index = () => {
   const [modalOpen, setModalOpen] = useState(false)
   const [total, setTotal] = useState(0)
 
-  const [serverList, setServerList] = useLocalStorage('serverList', [])
+  const [, setServerList] = useLocalStorage('serverList', [])
 
   const dataMapRef = useRef({})
 
   const onFinish = (values) => {
-    console.log(values)
     if (!values.dateRange) {
       return message.error('Please select a date range')
     }
@@ -49,6 +48,7 @@ const Index = () => {
 
   const fetchTotalEarn = async (startDate, endDate) => {
     setLoading(true)
+    const serverList = JSON.parse(localStorage.getItem('serverList') || '[]')
     if (serverList.length >= 10) {
       message.loading('Expecting Long Time If You Have Many Nodes')
     }
@@ -185,6 +185,7 @@ const Index = () => {
     setModalOpen(true)
   }
   const handleExport = () => {
+    const serverList = JSON.parse(localStorage.getItem('serverList') || '[]')
     const content = JSON.stringify(serverList)
     Modal.info({
       content,
@@ -283,7 +284,7 @@ const Index = () => {
         onOk={onOk}
         onCancel={() => setModalOpen(false)}
         open={modalOpen}
-        title="Copy the content below and save it as a backup file"
+        title="Import from backup file"
         width={800}
       >
         <Input.TextArea
