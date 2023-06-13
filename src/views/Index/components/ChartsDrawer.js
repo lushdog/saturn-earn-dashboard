@@ -1,14 +1,15 @@
 import { Drawer, Button } from 'antd'
 import ReactECharts from 'echarts-for-react'
 import dayjs from 'dayjs'
+import { useEffect, useState } from 'react'
+import { getFilPrice } from '../service'
 
 const ConfigDrawer = ({ onCloseDrawer, pricePerDay, metrics, open }) => {
   const xAxis = metrics.map((item) => dayjs(item.timeStamp).format('MM-DD'))
   const yAxis = metrics.map((item) => item.filAmount)
   const yAxis2 = metrics.map((item) => item.numRequests)
+  const [filPrice, setFilPrice] = useState(4)
 
-  // TODO get fil price from api
-  const filPrice = 4.5
   const earningFil = pricePerDay ? pricePerDay / filPrice : ''
   const markLineData = [
     {
@@ -80,6 +81,13 @@ const ConfigDrawer = ({ onCloseDrawer, pricePerDay, metrics, open }) => {
       }
     ]
   }
+  
+  useEffect(() => {
+    getFilPrice().then((res) => {
+      isFinite(res.filecoin.usd) && setFilPrice(res.filecoin.usd)
+    })
+  }, [])
+
   return (
     <Drawer
       title={'Earnings Chart'}
