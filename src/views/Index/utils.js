@@ -7,7 +7,7 @@ export const keepThreeDecimals = (num, dec = 3) => {
 
 export const kbToGb = (num) => {
   if (typeof num !== 'number') {
-    return num + 'GB'
+    return num
   }
-  return keepThreeDecimals(num / 1024 / 1024 / 1024, 0) + 'GB'
+  return keepThreeDecimals(num / 1024 / 1024 / 1024, 0)
 }

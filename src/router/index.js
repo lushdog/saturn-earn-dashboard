@@ -19,10 +19,3 @@ export const RouteConfig = [
   }
 ]
 
-// export const sideBarMenu = [
-//   {
-//     key: '/board/indicator',
-//     icon: <BarChartOutlined />,
-//     label: '测试部指标体系'
-//   }
-// ]

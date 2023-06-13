@@ -52,6 +52,11 @@ const Index = () => {
     if (serverList.length >= 10) {
       message.loading('Expecting Long Time If You Have Many Nodes')
     }
+    if (serverList.length === 0) {
+      message.error('Please add at least one node')
+      setLoading(false)
+      return
+    }
     const allPromise = serverList.map(async (item) => {
       const result = await fetchEarnData({
         filAddress: item.address,
@@ -80,7 +85,7 @@ const Index = () => {
       return {
         filAddress: value.filAddress,
         serverName: value.serverName,
-        totalEarnings: keepThreeDecimals(value.globalStats.totalEarnings) + 'FIL',
+        totalEarnings: keepThreeDecimals(value.globalStats.totalEarnings),
         totalBandwidth: kbToGb(value.globalStats.totalBandwidth),
         totalRetrievals: value.globalStats.totalRetrievals,
         perNodeMetrics: value.perNodeMetrics,
@@ -126,17 +131,22 @@ const Index = () => {
     {
       title: 'Total Earnings',
       dataIndex: 'totalEarnings',
-      key: 'totalEarnings'
+      key: 'totalEarnings',
+      render: (text) => <span>{text} FIL</span>,
+      sorter: (a, b) => a.totalEarnings - b.totalEarnings,
     },
     {
       title: 'Total Bandwidth',
       dataIndex: 'totalBandwidth',
-      key: 'totalBandwidth'
+      key: 'totalBandwidth',
+      render: (text) => <span>{text}GB</span>,
+      sorter: (a, b) => a.totalBandwidth - b.totalBandwidth,
     },
     {
       title: 'Total Retrievals',
       dataIndex: 'totalRetrievals',
-      key: 'totalRetrievals'
+      key: 'totalRetrievals',
+      sorter: (a, b) => a.totalEarnings - b.totalEarnings,
     },
     {
       title: 'View Charts',
