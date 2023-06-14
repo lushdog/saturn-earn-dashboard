@@ -98,14 +98,14 @@ const ConfigDrawer = ({ onCloseDrawer, pricePerDay, metrics, open }) => {
       forceRender={true}
       extra={
         <Button type="primary" onClick={onCloseDrawer}>
-          关闭
+          Close
         </Button>
       }
     >
       <ReactECharts
         lazyUpdate={true}
         notMerge={true}
-        style={{ width: '100%', height: '80vh' }}
+        style={{ width: '100%', height: '50vh' }}
         option={options}
       />
     </Drawer>

@@ -139,7 +139,7 @@ const Index = () => {
       title: 'Total Bandwidth',
       dataIndex: 'totalBandwidth',
       key: 'totalBandwidth',
-      render: (text) => <span>{text}GB</span>,
+      render: (text) => <span>{text} GB</span>,
       sorter: (a, b) => a.totalBandwidth - b.totalBandwidth,
     },
     {
