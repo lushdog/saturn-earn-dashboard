@@ -62,7 +62,8 @@ const Index = () => {
         filAddress: item.address,
         startDate,
         endDate,
-        step: 'day'
+        step: 'day',
+        perNode: true
       })
       return Object.assign({}, result, {
         filAddress: item.address,
