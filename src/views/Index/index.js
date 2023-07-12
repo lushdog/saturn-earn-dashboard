@@ -277,7 +277,8 @@ const Index = () => {
           expandedRowRender: (record) => <ExpandedTable dataSource={record.perNodeMetrics} />,
           rowExpandable: (record) => record.name !== 'Not Expandable'
         }}
-        size="small"
+        rowClassName={(record) => record?.perNodeMetrics?.find(item => item.max !== 'active' ? 'inactive-node' : '')}
+        size="small" 
         rowKey={'serverName'}
         className="mt-2"
         dataSource={dataSource}
